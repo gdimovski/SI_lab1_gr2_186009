@@ -60,3 +60,30 @@ class Student {
 
 	}
 }
+
+class Faculty
+{
+	List<labs.Student> students;
+	String facultyName;
+
+	public Faculty(String facultyName) {
+		this.facultyName = facultyName;
+		students = new ArrayList<>();
+	}
+
+	public void addStudent(labs.Student s)
+	{
+		students.add(s);
+	}
+
+	public void removeStudent(labs.Student s)
+	{
+		students.remove(s);
+	}
+
+	public double averageGrade()
+	{
+		return students.stream().flatMap(student -> student.grades.stream()).mapToDouble(i->i).average().orElse(0);
+
+	}
+}
